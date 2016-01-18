@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Grayscale - Start Bootstrap Theme</title>
+    <title>경으리World</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -31,7 +31,8 @@
 
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" onload="initialize()">
+    <div id="map_view" style="width:500px; height:300px;"></div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -104,7 +105,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>About Champ</h2>
-                    <p>Ezreal :lsktnalkrnsldkviakrnal<br>Caitlyn :dldldldlslkskskltn<br>Missfortune :dkslnltksnllrl<br>Lucian :dkstlksnrlskrnlt</p>
+                    <p>Ezreal : 이즈리얼은 강력한 원거리 챔피언으로 장거리 견제와 저격, 상대에게 순간 접근, 도주가 가능한 이동 기술도 가지고 있습니다. 이즈리얼은 기술들을 적중시킬 때마다 공격 속도가 증가하며 신비한 화살은 재사용 시간을 단축하는 효과도 가지고 있습니다. 아이템에 따라 다양한 방향의 육성이 가능합니다.<br>Caitlyn : 케이틀린은 가장 긴 기본 공격 사거리를 자랑하는 챔피언입니다. 긴 사거리로 초반에 적을 압박하여 우위를 얻어낼 수 있으며, 요들 덫과 투망 등 생존에 도움되는 스킬도 가지고 있습니다. 패시브 활용을 위해 수풀 근처에서 전투를 지속하는 것이 좋습니다.<br>Missfortune : 미스 포츈은 상대방을 압박하여 성장을 방해하는 원거리 챔피언으로 초반에 강력한 모습을 보입니다. 패시브 기술인 활보와 공격 스킬들을 사용하여 빠르게 적을 견제하고 도주할 수 있습니다.<br>Lucian : 루시안은 쌍권총을 사용하는 원거리 챔피언입니다. 끈질긴 추격를 이용하여 모든 둔화 효과를 제거할 수 있으며, 상대방에게 급속도로 접근하거나 지형을 넘어 도주할 수 있어서 높은 생존력을 자랑합니다. 궁극기인 빛의 심판은 시전 후 공격 방향 전환이 불가능하지만 시전 후 자유롭게 이동이 가능합니다.</p>
                     <p>SESON-4 : Gold &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SESON-5 : Plattinum</p>
                 </div>
             </div>
@@ -164,7 +165,43 @@
     <script src="js/jquery.easing.min.js"></script>
 
     <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJVRHBU-j3uEplNgQyRBv9rRcLlvMrj-Y&sensor=false"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script>
+        function initialize(){
+            var Y_point = 36.796048;
+            var X_point = 127.116767;
+            var zoomLevel = 16;
+            var markertitle = "경으리World";
+            var markerMaxWidth = 300;
+            var contentString = '<div>'+
+            '<h2>경으리World</h2>'+
+            '<p>Hello! My project!</p>'+
+            '</div>';
+
+            var myLatlng = new google.maps.Latlng(Y_point, X_point);
+            var mapOption = {
+                zoom: zoomLevel;
+                center: myLatlng;
+                mapTypeld: google.maps.MapTypeld.ROADMAP
+            }
+            var map = nwe google.maps.Map(document.getElementById('map_view'),mapOptions);
+            var marker = new google.maps.Maker({
+                position: myLatlng,
+                map: map,
+                title: markerTitle
+            });
+            var infowindow = new google.maps.infoWindow(
+                        {
+                            content: contentString,
+                            maxWidth: markerMaxWidth
+                        }
+                );
+            google.maps.event.addListener(marker, 'click', function(){
+                infowindow.open(map, marker);
+            });
+        }
+    </script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
